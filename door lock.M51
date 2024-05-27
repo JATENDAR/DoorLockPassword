@@ -1,0 +1,366 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/25/2014  18:48:01  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE door lock.obj TO door lock
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  door lock.obj (DOOR_LOCK)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  door lock (DOOR_LOCK)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0016H     UNIT         _DATA_GROUP_
+            DATA    001EH     000CH     UNIT         ?DT?DOOR_LOCK
+            DATA    002AH     0008H     UNIT         ?DT?_INT_LCD?DOOR_LOCK
+            IDATA   0032H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0164H     UNIT         ?C?LIB_CODE
+            CODE    0964H     00F7H     UNIT         ?PR?MAIN?DOOR_LOCK
+            CODE    0A5BH     0093H     UNIT         ?CO?DOOR_LOCK
+            CODE    0AEEH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0B7AH     007DH     UNIT         ?PR?KEYSCAN?DOOR_LOCK
+            CODE    0BF7H     0074H     UNIT         ?PR?_INT_LCD?DOOR_LOCK
+            CODE    0C6BH     0025H     UNIT         ?PR?_STR_LCD?DOOR_LOCK
+            CODE    0C90H     0020H     UNIT         ?PR?_DELAY_MS?DOOR_LOCK
+            CODE    0CB0H     001EH     UNIT         ?PR?INIT_LCD?DOOR_LOCK
+            CODE    0CCEH     0010H     UNIT         ?PR?_WRITE_LCD?DOOR_LOCK
+            CODE    0CDEH     000FH     UNIT         ?C_INITSEG
+            CODE    0CEDH     0007H     UNIT         ?PR?COLSCAN?DOOR_LOCK
+            CODE    0CF4H     0005H     UNIT         ?PR?_CMD_LCD?DOOR_LOCK
+            CODE    0CF9H     0005H     UNIT         ?PR?_DISP_LCD?DOOR_LOCK
+
+
+
+OVERLAY MAP OF MODULE:   door lock (DOOR_LOCK)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?DOOR_LOCK
+  +--> ?C_INITSEG
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2014  18:48:01  PAGE 2
+
+
+
+?PR?MAIN?DOOR_LOCK               0008H    0013H
+  +--> ?CO?DOOR_LOCK
+  +--> ?PR?INIT_LCD?DOOR_LOCK
+  +--> ?PR?_STR_LCD?DOOR_LOCK
+  +--> ?PR?_DELAY_MS?DOOR_LOCK
+  +--> ?PR?_CMD_LCD?DOOR_LOCK
+  +--> ?PR?KEYSCAN?DOOR_LOCK
+  +--> ?PR?_DISP_LCD?DOOR_LOCK
+
+?PR?INIT_LCD?DOOR_LOCK           -----    -----
+  +--> ?PR?_CMD_LCD?DOOR_LOCK
+
+?PR?_CMD_LCD?DOOR_LOCK           -----    -----
+  +--> ?PR?_WRITE_LCD?DOOR_LOCK
+
+?PR?_WRITE_LCD?DOOR_LOCK         -----    -----
+  +--> ?PR?_DELAY_MS?DOOR_LOCK
+
+?PR?_STR_LCD?DOOR_LOCK           001BH    0003H
+  +--> ?PR?_DISP_LCD?DOOR_LOCK
+
+?PR?_DISP_LCD?DOOR_LOCK          -----    -----
+  +--> ?PR?_WRITE_LCD?DOOR_LOCK
+
+?PR?KEYSCAN?DOOR_LOCK            -----    -----
+  +--> ?PR?COLSCAN?DOOR_LOCK
+
+
+
+SYMBOL TABLE OF MODULE:  door lock (DOOR_LOCK)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DOOR_LOCK
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A0H.0       PUBLIC        c0
+  B:00A0H.1       PUBLIC        c1
+  B:00A0H.2       PUBLIC        c2
+  B:00A0H.4       PUBLIC        r0
+  B:00A0H.5       PUBLIC        r1
+  B:00A0H.6       PUBLIC        r2
+  B:00A0H.7       PUBLIC        r3
+  C:0964H         PUBLIC        main
+  B:00B0H.1       PUBLIC        lamp
+  B:00B0H.0       PUBLIC        motor
+  D:001EH         PUBLIC        keypad_lut
+  C:0ADFH         SYMBOL        _?ix1000
+  C:0CCEH         PUBLIC        _write_lcd
+  C:0AE4H         SYMBOL        _?ix1001
+  C:0AE9H         SYMBOL        _?ix1002
+  C:0CF9H         PUBLIC        _disp_lcd
+  C:0CF4H         PUBLIC        _cmd_lcd
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2014  18:48:01  PAGE 3
+
+
+  C:0CB0H         PUBLIC        init_lcd
+  C:0C90H         PUBLIC        _delay_ms
+  B:00B0H.5       PUBLIC        en
+  C:0BF7H         PUBLIC        _int_lcd
+  B:00B0H.7       PUBLIC        rs
+  C:0CEDH         PUBLIC        colscan
+  B:00B0H.6       PUBLIC        rw
+  C:0C6BH         PUBLIC        _str_lcd
+  C:0B7AH         PUBLIC        keyscan
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        n
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0C90H         LINE#         9
+  C:0C90H         LINE#         10
+  C:0C90H         LINE#         12
+  C:0C9AH         LINE#         13
+  C:0CAFH         LINE#         14
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _WRITE_LCD
+  D:0007H         SYMBOL        dat
+  C:0CCEH         LINE#         17
+  C:0CCEH         LINE#         18
+  C:0CCEH         LINE#         19
+  C:0CD0H         LINE#         20
+  C:0CD2H         LINE#         21
+  C:0CD4H         LINE#         22
+  C:0CDBH         LINE#         23
+  C:0CDDH         LINE#         24
+  -------         ENDPROC       _WRITE_LCD
+  -------         PROC          _CMD_LCD
+  D:0007H         SYMBOL        cmd
+  C:0CF4H         LINE#         26
+  C:0CF4H         LINE#         27
+  C:0CF4H         LINE#         28
+  C:0CF6H         LINE#         29
+  -------         ENDPROC       _CMD_LCD
+  -------         PROC          _DISP_LCD
+  D:0007H         SYMBOL        c
+  C:0CF9H         LINE#         32
+  C:0CF9H         LINE#         33
+  C:0CF9H         LINE#         34
+  C:0CFBH         LINE#         35
+  -------         ENDPROC       _DISP_LCD
+  -------         PROC          INIT_LCD
+  C:0CB0H         LINE#         38
+  C:0CB0H         LINE#         39
+  C:0CB0H         LINE#         40
+  C:0CB5H         LINE#         41
+  C:0CBAH         LINE#         42
+  C:0CBFH         LINE#         43
+  C:0CC4H         LINE#         44
+  C:0CC9H         LINE#         45
+  -------         ENDPROC       INIT_LCD
+  -------         PROC          _STR_LCD
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2014  18:48:01  PAGE 4
+
+
+  D:001BH         SYMBOL        s
+  C:0C6BH         LINE#         49
+  C:0C71H         LINE#         50
+  C:0C71H         LINE#         51
+  C:0C7CH         LINE#         52
+  C:0C8FH         LINE#         53
+  -------         ENDPROC       _STR_LCD
+  -------         PROC          _INT_LCD
+  D:002AH         SYMBOL        n
+  -------         DO            
+  D:002CH         SYMBOL        a
+  D:0031H         SYMBOL        i
+  -------         ENDDO         
+  C:0BF7H         LINE#         55
+  C:0BFBH         LINE#         56
+  C:0BFBH         LINE#         57
+  C:0C11H         LINE#         58
+  C:0C17H         LINE#         59
+  C:0C17H         LINE#         60
+  C:0C1CH         LINE#         62
+  C:0C1CH         LINE#         64
+  C:0C1CH         LINE#         65
+  C:0C27H         LINE#         66
+  C:0C27H         LINE#         67
+  C:0C40H         LINE#         68
+  C:0C4FH         LINE#         69
+  C:0C51H         LINE#         70
+  C:0C5CH         LINE#         71
+  C:0C5CH         LINE#         72
+  C:0C66H         LINE#         73
+  C:0C6AH         LINE#         74
+  C:0C6AH         LINE#         75
+  -------         ENDPROC       _INT_LCD
+  -------         PROC          COLSCAN
+  C:0CEDH         LINE#         13
+  C:0CEDH         LINE#         14
+  C:0CEDH         LINE#         15
+  C:0CF3H         LINE#         16
+  -------         ENDPROC       COLSCAN
+  -------         PROC          KEYSCAN
+  -------         DO            
+  D:0006H         SYMBOL        rowval
+  D:0005H         SYMBOL        colval
+  C:0BCFH         SYMBOL        colcheck
+  -------         ENDDO         
+  C:0B7AH         LINE#         18
+  C:0B7AH         LINE#         19
+  C:0B7AH         LINE#         21
+  C:0B80H         LINE#         22
+  C:0B88H         LINE#         23
+  C:0B8DH         LINE#         24
+  C:0B8FH         LINE#         25
+  C:0B95H         LINE#         26
+  C:0B9AH         LINE#         27
+  C:0B9AH         LINE#         28
+  C:0B9CH         LINE#         29
+  C:0B9EH         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2014  18:48:01  PAGE 5
+
+
+  C:0B9EH         LINE#         31
+  C:0BA0H         LINE#         32
+  C:0BA6H         LINE#         33
+  C:0BABH         LINE#         34
+  C:0BABH         LINE#         35
+  C:0BADH         LINE#         36
+  C:0BAFH         LINE#         37
+  C:0BAFH         LINE#         38
+  C:0BB1H         LINE#         39
+  C:0BB7H         LINE#         40
+  C:0BBCH         LINE#         41
+  C:0BBCH         LINE#         42
+  C:0BBEH         LINE#         43
+  C:0BC0H         LINE#         44
+  C:0BC0H         LINE#         45
+  C:0BC2H         LINE#         46
+  C:0BC8H         LINE#         47
+  C:0BCDH         LINE#         48
+  C:0BCDH         LINE#         49
+  C:0BCFH         LINE#         50
+  C:0BCFH         LINE#         52
+  C:0BCFH         LINE#         53
+  C:0BD2H         LINE#         54
+  C:0BD6H         LINE#         55
+  C:0BD9H         LINE#         56
+  C:0BDDH         LINE#         57
+  C:0BE0H         LINE#         58
+  C:0BE2H         LINE#         59
+  C:0BEBH         LINE#         60
+  C:0BF6H         LINE#         61
+  -------         ENDPROC       KEYSCAN
+  -------         PROC          MAIN
+  -------         DO            
+  D:0001H         SYMBOL        i
+  D:0008H         SYMBOL        read_pwd
+  D:000DH         SYMBOL        count1
+  D:000EH         SYMBOL        count2
+  D:000FH         SYMBOL        j
+  D:0010H         SYMBOL        k
+  D:0011H         SYMBOL        load1
+  D:0016H         SYMBOL        load2
+  -------         ENDDO         
+  C:0964H         LINE#         8
+  C:0964H         LINE#         9
+  C:0964H         LINE#         11
+  C:0969H         LINE#         12
+  C:098DH         LINE#         13
+  C:0991H         LINE#         14
+  C:0994H         LINE#         15
+  C:099DH         LINE#         16
+  C:09A4H         LINE#         17
+  C:09A4H         LINE#         18
+  C:09A4H         LINE#         19
+  C:09A9H         LINE#         20
+  C:09B2H         LINE#         21
+  C:09B7H         LINE#         22
+  C:09C0H         LINE#         23
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2014  18:48:01  PAGE 6
+
+
+  C:09C5H         LINE#         24
+  C:09CAH         LINE#         25
+  C:09CCH         LINE#         26
+  C:09CCH         LINE#         27
+  C:09D9H         LINE#         28
+  C:09DEH         LINE#         30
+  C:09E2H         LINE#         32
+  C:09E4H         LINE#         33
+  C:09E4H         LINE#         34
+  C:09F3H         LINE#         35
+  C:09F5H         LINE#         36
+  C:09FDH         LINE#         37
+  C:09FFH         LINE#         38
+  C:0A03H         LINE#         39
+  C:0A08H         LINE#         41
+  C:0A0EH         LINE#         42
+  C:0A0EH         LINE#         43
+  C:0A10H         LINE#         44
+  C:0A17H         LINE#         45
+  C:0A1DH         LINE#         47
+  C:0A24H         LINE#         48
+  C:0A26H         LINE#         49
+  C:0A28H         LINE#         50
+  C:0A2EH         LINE#         51
+  C:0A2EH         LINE#         52
+  C:0A30H         LINE#         53
+  C:0A37H         LINE#         54
+  C:0A3DH         LINE#         56
+  C:0A44H         LINE#         57
+  C:0A46H         LINE#         58
+  C:0A48H         LINE#         60
+  C:0A48H         LINE#         61
+  C:0A51H         LINE#         62
+  C:0A51H         LINE#         63
+  C:0A58H         LINE#         65
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        DOOR_LOCK
+
+  -------         MODULE        ?C?COPY
+  C:08D0H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?CLDPTR
+  C:08F6H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?UIDIV
+  C:090FH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_LCD?DOOR_LOCK
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 030DH BYTE (38%) *
+******************************************************************************
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2014  18:48:01  PAGE 7
+
+
+Program Size: data=51.0 xdata=0 code=1281
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

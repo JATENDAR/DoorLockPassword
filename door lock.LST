@@ -1,0 +1,91 @@
+C51 COMPILER V9.52.0.0   DOOR_LOCK                                                         08/25/2014 18:48:00 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE DOOR_LOCK
+OBJECT MODULE PLACED IN door lock.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE door lock.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"lcd8.h"
+   3          #include"keypad.h"
+   4          
+   5          sbit motor=P3^0;
+   6          
+   7          sbit lamp=P3^1;
+   8          void main()
+   9          {
+  10   1        
+  11   1        unsigned char i,read_pwd[5],count1,count2,j=0,k=0;
+  12   1        unsigned char load1[5]="45678",load2[5]="56789";
+  13   1        motor=lamp=0;
+  14   1        init_lcd();
+  15   1        str_lcd("pwd ckt breaker");
+  16   1        delay_ms(5000);
+  17   1        while(1)
+  18   1        {
+  19   2          cmd_lcd(0x80);
+  20   2        str_lcd("enter password    ");
+  21   2          cmd_lcd(0xc0);
+  22   2        str_lcd("             ");
+  23   2          count1=count2=0;
+  24   2          cmd_lcd(0xc0);
+  25   2          for(i=0;i<5;i++)
+  26   2          {
+  27   3            read_pwd[i]=0x30+keyscan();
+  28   3            disp_lcd('*');
+  29   3            //delay_ms(10);
+  30   3          } 
+  31   2          //str_lcd(read_pwd);
+  32   2          for(i=0;i<5;i++)
+  33   2          {
+  34   3            if(read_pwd[i]==load1[i])
+  35   3            count1++;
+  36   3            if(read_pwd[i]==load2[i])
+  37   3            count2++;
+  38   3          }
+  39   2          cmd_lcd(0x80);
+  40   2          
+  41   2          if(count1==5)
+  42   2          {
+  43   3            j++;
+  44   3            if(j%2==0)
+  45   3            str_lcd("Load1 ckt opened");
+  46   3            else
+  47   3            str_lcd("Load1 ckt closed");  
+  48   3            motor=~motor; 
+  49   3          }
+  50   2          else if(count2==5)
+  51   2          {
+  52   3            k++;
+  53   3            if(k%2==0)
+  54   3            str_lcd("Load2 ckt opened");
+  55   3            else
+C51 COMPILER V9.52.0.0   DOOR_LOCK                                                         08/25/2014 18:48:00 PAGE 2   
+
+  56   3            str_lcd("Load2 ckt closed");  
+  57   3            lamp=~lamp;
+  58   3          }
+  59   2          else
+  60   2          {
+  61   3            str_lcd("pwd is wrong  ");
+  62   3          }
+  63   2          delay_ms(5000);
+  64   2            
+  65   2        }
+  66   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    620    ----
+   CONSTANT SIZE    =    147    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     12      30
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
